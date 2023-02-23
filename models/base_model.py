@@ -18,12 +18,14 @@ class BaseModel:
 
     def save(self):
         """comments"""
-        self.update_at = datetime.datetime.now()
 
+        self.updated_at = datetime.datetime.now()
+    
     def to_dict(self):
         """comments"""
+
         dicc = self.__dict__.copy()
         dicc["__class__"] = type(self).__name__
         dicc["created_at"] = self.created_at.isoformat()
-        dicc["update_at"] = self.update_at.isoformat()
+        dicc["updated_at"] = self.updated_at.isoformat()
         return dicc
