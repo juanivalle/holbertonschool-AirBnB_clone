@@ -5,6 +5,7 @@
 from models.base_model import BaseModel
 import json
 
+cls = {"BaseModel": BaseModel}
 
 class FileStorage:
     """comments"""
@@ -38,6 +39,6 @@ class FileStorage:
             with open(self.__file_path, 'r') as d:
                 objects_json = json.load(d)
                 for key in objects_json:
-                    self.__objects[key] = classes[objects_json[key]["__class__"]](**objects_json[key])
+                    self.__objects[key] = cls[objects_json[key]["__class__"]](**objects_json[key])
         except FileNotFoundError:
             pass
