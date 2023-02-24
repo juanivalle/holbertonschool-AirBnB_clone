@@ -2,7 +2,6 @@
 """comments"""
 
 
-from models.base_model import BaseModel
 import json
 
 
