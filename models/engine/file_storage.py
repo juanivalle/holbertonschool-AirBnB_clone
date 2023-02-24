@@ -5,7 +5,6 @@
 from models.base_model import BaseModel
 import json
 
-cls = {"BaseModel": BaseModel}
 
 class FileStorage:
     """comments"""
