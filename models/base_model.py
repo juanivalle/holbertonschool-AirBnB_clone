@@ -1,16 +1,23 @@
 #!/usr/bin/python3
 """comments"""
 
-import datetime
+from datetime import datetime
 import uuid
+import models
 
 class BaseModel:
     """comments"""
 
-    def __init__(self):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = self.created_at
+    def __init__(self, *args, **kwargs):
+        if len(kwargs) == 0:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
+            models.storage.new(self)
+        else:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    setattr(self, key, value)
     
     def __str__(self):
         """comments"""
@@ -20,7 +27,7 @@ class BaseModel:
         """comments"""
 
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        models.storage.save()
     
     def to_dict(self):
         """comments"""
@@ -30,16 +37,3 @@ class BaseModel:
         dicc["created_at"] = self.created_at.isoformat()
         dicc["updated_at"] = self.updated_at.isoformat()
         return dicc
-
-    def __init__(self, *args, **kwargs):
-        if kwargs:
-            for key, value in kwargs.items():
-                if key != "__class__":
-                    setattr(self, key, value)
-        else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
-            storage.new(self)
-
-    
