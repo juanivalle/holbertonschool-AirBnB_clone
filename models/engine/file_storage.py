@@ -4,7 +4,6 @@
 
 import json
 from models.base_model import BaseModel
-import os.path
 
 
 class FileStorage:
@@ -35,13 +34,13 @@ class FileStorage:
 
     def reload(self):
         """comments"""
-        dicc1 = {}
-        
+
         try:
             with open(FileStorage.__file_path, mode='r', encoding='utf-8') as f:
-                for key, value in json.load(f).items():
-                    mt = str(key).split(".")
-                    if mt[0] in dicc1.keys():
-                        self.__objects[key] = dicc1[mt[0]](**value)
+                objects_json = json.load(f)
+                for key, value in objects_json.items():
+                    obj_class = value['__class__']
+                    obj = eval(obj_class + "(**value)")
+                    FileStorage.__objects[key] = obj
         except FileNotFoundError:
             pass
