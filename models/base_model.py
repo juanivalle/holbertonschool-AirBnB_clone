@@ -2,23 +2,34 @@
 """comments"""
 
 from datetime import datetime
-import uuid
+from uuid import uuid4
 import models
 
 class BaseModel:
     """comments"""
 
     def __init__(self, *args, **kwargs):
-        if len(kwargs) == 0:
-            self.id = str(uuid.uuid4())
+        """ Construct """
+        if not kwargs:
+            self.id = str(uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.updated_at = self.created_at
             models.storage.new(self)
         else:
             for key, value in kwargs.items():
-                if key != "__class__":
-                    setattr(self, key, value)
-    
+                if key == '__class__':
+                    continue
+                elif key == 'updated_at':
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == 'created_at':
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                if 'id' not in kwargs.keys():
+                    self.id = str(uuid4())
+                if 'created_at' not in kwargs.keys():
+                    self.created_at = datetime.now()
+                if 'updated_at' not in kwargs.keys():
+                    self.updated_at = datetime.now()
+                setattr(self, key, value)
     def __str__(self):
         """comments"""
         return(f"[{type(self).__name__}] ({self.id}) {self.__dict__}")
