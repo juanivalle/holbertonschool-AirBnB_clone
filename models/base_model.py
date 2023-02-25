@@ -26,7 +26,7 @@ class BaseModel:
     def save(self):
         """comments"""
 
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
     
     def to_dict(self):
