@@ -4,6 +4,7 @@
 
 import json
 from models.base_model import BaseModel
+import os
 
 
 class FileStorage:
@@ -24,22 +25,16 @@ class FileStorage:
             self.__objects[key] = obj
 
     def save(self):
-        """comments"""
-        objects_json = {}
-        for key, value in FileStorage._objects.items():
-            objects_json.update({key: value.to_dict()})
-        with open(FileStorage.__file_path, 'w') as f:
-            f.write(json.dumps(objects_json, default=str))
+        """ serializes objectss to the JSON file (path: __file_path) """
+        with open(FileStorage.__file_path, 'w', encoding='utf-8') as fname:
+            new_dict = {key: obj.to_dict() for key, obj in
+                        FileStorage.__objects.items()}
+            json.dump(new_dict, fname)
 
     def reload(self):
-        """comments"""
-
-        try:
-            with open(FileStorage.__file_path, mode='r', encoding='utf-8') as f:
-                objects_json = json.load(f)
-                for key, value in objects_json.items():
-                    obj_class = value['__class__']
-                    obj = eval(obj_class + "(**value)")
-                    FileStorage.__objects[key] = obj
-        except FileNotFoundError:
-            pass
+        """ Reload the file """
+        if (os.path.isfile(FileStorage.__file_path)):
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as fname:
+                l_json = json.load(fname)
+                for key, val in l_json.items():
+                    FileStorage.__objects[key] = eval(val['__class__'])(**val)
