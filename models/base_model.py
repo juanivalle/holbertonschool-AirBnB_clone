@@ -32,7 +32,7 @@ class BaseModel:
     def to_dict(self):
         """comments"""
 
-        dicc = self.__dict__.copy()
+        dicc = dict(self.__dict__)
         dicc["__class__"] = type(self).__name__
         dicc["created_at"] = self.created_at.isoformat()
         dicc["updated_at"] = self.updated_at.isoformat()
