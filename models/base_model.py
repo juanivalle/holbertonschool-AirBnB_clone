@@ -3,6 +3,7 @@
 
 import datetime
 import uuid
+from engine import file_storage
 
 class BaseModel:
     """comments"""
@@ -20,7 +21,7 @@ class BaseModel:
         """comments"""
 
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        file_storage.save()
     
     def to_dict(self):
         """comments"""
@@ -40,6 +41,4 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new(self)
-
-    
+            file_storage.new(self)
