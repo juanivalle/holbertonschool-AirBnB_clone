@@ -25,13 +25,11 @@ class FileStorage:
 
     def save(self):
         """comments"""
-
-        with open(self.__file_path, 'w') as f:
-            objects_json = {}
-            for key in self.__objects:
-                objects_json[key] = self.__objects[key].to_dict()
-            with open(FileStorage.__file_path, 'w') as f:
-                f.write(json.dumps(objects_json, default=str))
+        objects_json = {}
+        for key, value in FileStorage._objects.items():
+            objects_json.update({key: value.to_dict()})
+        with open(FileStorage.__file_path, 'w') as f:
+            f.write(json.dumps(objects_json, default=str))
 
     def reload(self):
         """comments"""
