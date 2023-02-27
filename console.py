@@ -47,8 +47,8 @@ class HBNBCommand(cmd.Cmd):
             return
         elif len(arg.split()) > 1:
             aux = arg.split()[0] + '.' + arg.split()[1]
-            if aux in storage.all:
-                value = storage.all
+            if aux in storage.all():
+                value = storage.all()
                 print(value[aux])
             else:
                 print("** no instance found **")
@@ -70,8 +70,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg.split()) > 1:
             aux = arg.split()[0] + '.' + arg.split()[1]
             if aux in storage.all():
-                storage.all()
-                storage.save().delet(aux)
+                storage.all().pop(aux)
+                storage.save()
             else:
                 print("** no instance found **")
 
@@ -84,12 +84,16 @@ class HBNBCommand(cmd.Cmd):
             print([str(aux) for key, aux in storage.all().items() if arg in key])
 
     def do_update(self, arg):
-        if not arg:
+        arg = arg.split()
+        if len(arg) == 0:
             print("** class name missing **")
+            return
         elif arg.split()[0] not in self.clas:
             print("** class doesn't exist **")
+            return
         elif len(arg) == 1:
             print("** instance id missing **")
+            return
         else:
             aux = arg.split()[0] + '.' + arg.split()[1]
             if aux in storage.all():
