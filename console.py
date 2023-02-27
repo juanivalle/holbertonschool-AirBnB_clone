@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         elif len(separate_arg) > 1:
-            aux = arg.split()[0] + '.' + arg.split()[1]
+            aux = arg[0] + '.' + arg[1]
             if aux in storage.all():
                 storage.all().pop(aux)
                 storage.save()
@@ -96,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         else:
-            aux = arg.split()[0] + '.' + arg.split()[1]
+            aux = arg[0] + '.' + arg[1]
             if aux in storage.all():
                 if len(arg) < 2:
                     if len(arg) == 3:
