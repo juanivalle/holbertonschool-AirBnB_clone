@@ -41,10 +41,12 @@ class HBNBCommand(cmd.Cmd):
         """show command to exit the program"""
         if not arg:
             print("** class name missing **")
+            return
         elif arg.split()[0] not in self.clas:
             print("** class doesn't exist **")
+            return
         elif len(arg.split()) > 1:
-            aux = arg.split()[0] + '.' + arg.split([1])
+            aux = arg.split()[0] + '.' + arg.split()[1]
             if aux in storage.all:
                 value = storage.all
                 print(value[aux])
@@ -66,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 1:
             print("** instance id missing **")
         elif len(arg.split()) > 1:
-            aux = arg.split()[0] + '.' + arg.split([1])
+            aux = arg.split()[0] + '.' + arg.split()[1]
             if aux in storage.all():
                 storage.all()
                 storage.save().delet(aux)
@@ -89,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) == 1:
             print("** instance id missing **")
         else:
-            aux = arg.split()[0] + '.' + arg.split([1])
+            aux = arg.split()[0] + '.' + arg.split()[1]
             if aux in storage.all():
                 if len(arg) < 2:
                     if len(arg) == 3:
