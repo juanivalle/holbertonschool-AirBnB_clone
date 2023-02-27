@@ -65,9 +65,10 @@ class HBNBCommand(cmd.Cmd):
             aux = eval(separate_arg[0])
         except Exception:
             print("** class doesn't exist **")
-        if len(arg) == 1:
+        if len(separate_arg) == 1:
             print("** instance id missing **")
-        elif len(arg.split()) > 1:
+            return
+        elif len(separate_arg) > 1:
             aux = arg.split()[0] + '.' + arg.split()[1]
             if aux in storage.all():
                 storage.all().pop(aux)
@@ -88,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
             return
-        elif arg.split()[0] not in self.clas:
+        elif arg[0] not in self.clas:
             print("** class doesn't exist **")
             return
         elif len(arg) == 1:
