@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
         """EOF command to exit the program"""
         print('')
         exit()
-    
+
     def emptyline(self):
         pass
 
@@ -94,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in self.clas:
             print("** class doesn't exist **")
         else:
-            print([str(aux) for key, aux in storage.all().items() if arg in key])
+            print([str(i) for j, i in storage.all().items() if arg in j])
 
     def do_update(self, arg):
         arg = arg.split()
