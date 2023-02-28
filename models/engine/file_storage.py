@@ -42,7 +42,7 @@ class FileStorage:
         """comments"""
 
         try:
-            with open(FileStorage.__file_path, mode='r', encoding='utf-8') as f:
+            with open(FileStorage.__file_path, 'r', encoding='utf-8') as f:
                 objects_json = json.load(f)
                 for key, value in objects_json.items():
                     obj_class = value['__class__']
