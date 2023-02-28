@@ -2,7 +2,7 @@
 """ console """
 
 
-import cmd 
+import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -12,11 +12,12 @@ from models.place import Place
 from models.review import Review
 from models.amenity import Amenity
 
+
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     clas = {'BaseModel': BaseModel, 'User': User,
-            'State': State,'City': City,
-            'Place': Place,'Review': Review,
+            'State': State, 'City': City,
+            'Place': Place, 'Review': Review,
             'Amenity': Amenity}
 
     def do_quit(self, arg):
