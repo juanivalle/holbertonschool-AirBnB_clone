@@ -6,8 +6,8 @@ from models.base_model import BaseModel
 import models
 
 class Place(BaseModel):
-    City_id = ""
-    User_id = ""
+    city_id = ""
+    user_id = ""
     name = ""
     description = ""
     number_rooms = 0
