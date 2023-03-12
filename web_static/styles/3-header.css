@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 header {
     background-color: white;
     height: 70px;
@@ -6,21 +5,9 @@ header {
     border-bottom: 1px solid #CCCCCC;
 }
 
-header .logo {
+.logo {
     background-image: url(../images/logo-Airbnb.png);
     margin-left: 20px;
     font-size: 24px;
     font-weight: bold;
 }
-=======
-header{
-    background-image: url(logo.png);
-    background-repeat: no-repeat;
-    background-position: 20px;
-    background-color: white;
-    position: relative;
-    height: 70px;
-    width: 100%;
-    border: 1px solid #CCCCCC;
-}
->>>>>>> 92c369208ac4843a60746125755554453e6e4108
