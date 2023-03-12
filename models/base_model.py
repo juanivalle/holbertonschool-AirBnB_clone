@@ -5,6 +5,7 @@ from datetime import datetime
 from uuid import uuid4
 import models
 
+
 class BaseModel:
     """comments"""
 
@@ -30,16 +31,17 @@ class BaseModel:
                 if 'updated_at' not in kwargs.keys():
                     self.updated_at = datetime.now()
                 setattr(self, key, value)
+
     def __str__(self):
         """comments"""
-        return(f"[{type(self).__name__}] ({self.id}) {self.__dict__}")
+        return (f"[{type(self).__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
         """comments"""
 
         self.updated_at = datetime.now()
         models.storage.save()
-    
+
     def to_dict(self):
         """comments"""
 

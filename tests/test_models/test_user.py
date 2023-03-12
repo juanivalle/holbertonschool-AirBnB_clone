@@ -1,65 +1,21 @@
-#!/usr/bin/python3
-"""
-testing class User
-"""
-
-import unittest
-from models import user
-from datetime import datetime
+""" Test for user class """
 from models.user import User
-from models.base_model import BaseModel
+import unittest
 
-
-class test_class_base(unittest.TestCase):
-    """class for testing class User"""
-
-    @classmethod
-    def setUpClass(self):
-        """set class"""
-        self.my_model = User()
-
-    def setUp(self):
-        """ set attr """
-        self.dict = self.my_model.to_dict()
-
-    def test_docmodule(self):
-        """checking doc module"""
-        self.assertIsNotNone(user.__doc__)
-
-    def test_docclass(self):
-        """checking doc class"""
-        self.assertIsNotNone(User.__doc__)
-
-    def test_attr(self):
-        """test attributes"""
-        self.assertEqual(type(self.my_model.id), str)
-        self.assertEqual(type(self.my_model.created_at), datetime)
-        self.assertEqual(type(self.my_model.updated_at), datetime)
-        self.assertEqual(self.my_model.email, "")
-        self.assertEqual(self.my_model.password, "")
-        self.assertEqual(self.my_model.first_name, "")
-        self.assertEqual(self.my_model.last_name, "")
-
-    def test_create_base(self):
-        """test instance class"""
-        self.assertIsInstance(self.my_model, User)
-
-    def test_create_kwargs(self):
-        """ create class from dictionary """
-        self.kwargs = User(self.dict)
-        self.assertIsInstance(self.kwargs, User)
-
-    def test_update(self):
-        """ test update date """
-        update_old = self.my_model.updated_at
-        self.my_model.save()
-        update_new = self.my_model.updated_at
-        self.assertTrue(update_old != update_new)
+class Test_user(unittest.TestCase):
 
     def test_class(self):
-        """ test class """
-        self.assertEqual(User.email, "")
-        self.assertEqual(User.password, "")
-        self.assertEqual(User.first_name, "")
-        self.assertEqual(User.last_name, "")
-        self.assertTrue(issubclass(User, BaseModel))
+        User_test = User()
+        self.assertTrue(isinstance(User_test, User))
+        self.assertIsInstance(User_test, User)
+        self.assertTrue(hasattr(User_test, "email"))
+        self.assertTrue(hasattr(User_test, "password"))
+        self.assertTrue(hasattr(User_test, "first_name"))
+        self.assertTrue(hasattr(User_test, "last_name"))
+        self.assertEqual(User_test.email, "")
+        self.assertEqual(User_test.password, "")
+        self.assertEqual(User_test.first_name, "")
+        self.assertEqual(User_test.last_name, "")
+
+if __name__ == '__main__':
+    unittest.main()

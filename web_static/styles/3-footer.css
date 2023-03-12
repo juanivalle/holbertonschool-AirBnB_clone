@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 footer {
     background-color: white;
     height: 60px;
@@ -11,3 +12,22 @@ footer {
 
     border-top: 1px solid #CCCCCC;
 }
+=======
+footer{
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    border: 1px solid #CCCCCC;
+}
+.container {
+    position: relative;
+}
+
+.centered-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+>>>>>>> 92c369208ac4843a60746125755554453e6e4108
